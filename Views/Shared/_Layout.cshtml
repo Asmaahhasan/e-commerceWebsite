@@ -1,0 +1,121 @@
+﻿
+ 
+ @using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
+<title>Fix It</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link href="~\css\site.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="file:///C:/Users/original/Downloads/c%23website/template/templatemo_556_catalog_z/index.html" target="_parent" rel="sponsored">
+                    Fix It
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-1 @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Home" ? "active" : "")" href="@Url.Action("Home", "Home")">Main</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-2 @(ViewContext.RouteData.Values["Controller"].ToString() == "Brands" && ViewContext.RouteData.Values["Action"].ToString() == "brands" ? "active" : "")" href="@Url.Action("brands", "Brands")">Brands</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-3 @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "about" ? "active" : "")" href="@Url.Action("about", "home")">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-4 @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")" href="@Url.Action("Contact", "home")">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-5 @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "active" : "")" href="@Url.Action("Profile", "home")"><i class="fa-solid fa-user"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-6 @(ViewContext.RouteData.Values["Controller"].ToString() == "CartItems" && ViewContext.RouteData.Values["Action"].ToString() == "UserCart" ? "active" : "")" href="@Url.Action("UserCart", "CartItems")"><i class="fas fa-shopping-cart"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+        <div class="container-fluid tm-container-small">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-12 px-5 mb-5">
+                    <h3 class="tm-text-primary mb-4 tm-footer-title">About Fix today</h3>
+                    <p>Fix today is an online website for buying phone spare parts for all prands for any categories. You can also sell your old phone and we will take all repaired spare parts and show it in our website to buy it.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                    <h3 class="tm-text-primary mb-4 tm-footer-title">Our Links</h3>
+                    <ul class="tm-footer-links pl-0">
+                        <li><a href="file:///C:/Users/original/Downloads/c%23website/template/templatemo_556_catalog_z/index.html">Main</a></li>
+                        <li><a href="file:///C:/Users/original/Downloads/c%23website/template/templatemo_556_catalog_z/videos.html">Services</a></li>
+                        <li><a href="file:///C:/Users/original/Downloads/c%23website/template/templatemo_556_catalog_z/about.html">About</a></li>
+                        <li><a href="file:///C:/Users/original/Downloads/c%23website/template/templatemo_556_catalog_z/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                    <ul class="tm-social-links d-flex justify-content-end pl-0 mb-5">
+                        <li><a href="https://www.facebook.com/?locale=ar_AR"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li>
+                            <a href="https://www.twitter.com/?locale=ar_AR">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/?locale=ar_AR">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/?locale=ar_AR">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/?locale=ar_AR">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="#" class="tm-text-gray text-right d-block mb-2">Terms of Use</a>
+                    <a href="#" class="tm-text-gray text-right d-block">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-12 px-5 mb-3">
+                    Copyright 2023 Fix today.
+                </div>
+                <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
+                    Designed by <a href="https://www.free-css.com/free-css-templates?start=552" class="tm-text-gray" rel="sponsored" target="_parent">Free CSS</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        $(window).on("load", function () {
+            $('body').addClass('loaded');
+        });
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+</html>

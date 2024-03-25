@@ -1,0 +1,83 @@
+﻿@model IEnumerable<FixIt.Models.Brand>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog-Z Contact page</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="~/css/templatemo-style.css">
+    <script src="https://kit.fontawesome.com/a363edd0e0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fad', 'arrow-up']" />
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fas', 'arrow-up']" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+<body>
+   
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll">
+        <form class="d-flex tm-search-form" asp-action="brands" asp-controller="Brands">
+            <input name ="Search" class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success tm-search-btn" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <div>
+        <a asp-action="brands" asp-controller="Brands">Back For The Whole List</a>
+    </div>
+<table class="table">
+ 
+    <tbody>
+        <div class="container">
+            <div class="row">
+             @foreach (var item in Model)
+            {
+                <div class="col-sm-3">
+                <a href="@Url.Action("CategoriesByBrand","Catagories" , new{ brandId = item.BId})">
+                @{
+                     var base64 = Convert.ToBase64String(item.Photo);
+                     var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                 }
+                         <img src="@imgsrc" style=" height: 150px;
+                    object-fit: contain;
+                    border-style: none;
+                    border-radius: 15px;
+                    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+                    vertical-align: middle;
+                    display: inline-block;
+                    margin-right: 60px;
+                    padding: 4px;
+                    transition-duration: .3s;
+                    transition-property: transform;
+                    transition-timing-function: ease-out;
+                    margin:30px;
+                    margin-left:60px;" />
+                </a>
+                </div>
+            } 
+            </div>
+        </div>
+    </tbody>
+</table>
+
+<script src="~/js/plugins.js"></script>
+<script>
+    $(window).on("load", function () {
+        $('body').addClass('loaded');
+    });
+</script>
+</body>
+</html>

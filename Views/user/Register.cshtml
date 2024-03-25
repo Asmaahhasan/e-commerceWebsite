@@ -1,0 +1,89 @@
+﻿@model FixIt.Models.Users
+@{
+    Layout = null;
+}
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Sign up / Login Form</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+</html>
+<html>
+    <head>
+        <title>Slide Navbar</title>
+    <link href="~/css/register.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+        <link rel="stylesheet" href="~/css/Register.css">
+
+</head>
+<body>
+<div class="main">
+            <input type="checkbox" id="chk" aria-hidden="true">
+            <div class="signup">
+        <form asp-action="Register"  enctype="multipart/form-data">
+          <label class="sign-up" for="chk" aria-hidden="true">Sign up</label>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+             <input asp-for="FName"  placeholder="First name" />
+                <span asp-validation-for="FName"  ></span>
+
+             <input asp-for="LName" placeholder="Last name"  />
+             <span asp-validation-for="LName" ></span>
+
+             <input asp-for="EMail" placeholder="Email" />
+             <span asp-validation-for="EMail"  ></span>
+              <hr2 >  @ViewBag.error</hr2>
+                    <input asp-for="Pass" type="password" placeholder="Password"  />
+                <span asp-validation-for="Pass"  ></span>
+
+                <input asp-for="Address" placeholder="Address"  />
+                <span asp-validation-for="Address"  ></span>
+
+                <input asp-for="Phone" placeholder="Phone" maxlength="11"  />
+                <span asp-validation-for="Phone" ></span>
+
+
+                
+               <label for="profile-picture" class="upload-icon">
+                    <img src="path/to/your/icon.png" alt="">
+                    <i id="icon" class="fa-solid fa-user"></i>
+                </label>
+                <input type="file" asp-for="ClientFile" accept="image/*"  id="profile-picture" onchange="loadFile(event)" accept="image/*" style="display:none;" />
+                <img id="myImg"  />
+                 <span asp-validation-for="ClientFile"></span>
+
+                     <button  type="submit" >Sign up</button>
+
+            </form>
+            <form action="~/user/Login">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </body>
+</html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        <script>
+                var loadFile = function(event)
+                {
+                    var reader = new FileReader();
+                    reader.onload = function()
+                    {
+                        var myImage = document.getElementById('myImage');
+                        myImage.src = reader.result;
+                    }
+                    reader.readAsDataURL(event.target.files[0]);
+                }
+        </script> 
+} 
+

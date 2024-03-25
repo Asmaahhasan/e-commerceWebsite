@@ -1,0 +1,123 @@
+﻿@model FixIt.Models.Cart
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix It</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="~/css/templatemo-style.css">
+    <script src="https://kit.fontawesome.com/a363edd0e0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fad', 'arrow-up']" />
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fas', 'arrow-up']" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+</head>
+<body>
+    <div class="container">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+
+            <div class="col-md-4">
+        
+                    @{
+                        if (Model.SIdNavigation != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.SIdNavigation.Photo);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                            <img src="@imgsrc" class="image" style="text-align: center;" />
+
+                        }
+                        else
+                        {
+                           
+                        }
+                    }
+
+                 </div>
+           
+    <div class="col-md-5">
+                   
+            <input type="hidden" asp-for="CartId" />
+            <input type="hidden" asp-for="UId" />
+            <input type="hidden" asp-for="SId" />
+
+            <label asp-for="SId" class="control-label">Phone Name</label>
+            <p>@Html.DisplayFor(modelItem => Model.SIdNavigation.CIdNavigation.CName)</p>
+            <label asp-for="SId" class="control-label">Spare Part</label>
+            <p>@Html.DisplayFor(modelItem => Model.SIdNavigation.SName)</p>
+            <label class="control-label">Price</label>
+            <p>@Html.DisplayFor(modelItem => Model.SIdNavigation.Price)$</p>
+
+
+
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" min="1" max="@Html.DisplayFor(modelItem => Model.SIdNavigation.Quantity)" class="quant" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add to cart" class="btn btn-primary" />
+            </div>
+    </div>
+        </form>
+
+
+</div>
+
+<style>
+            .container {
+                display: flex;
+                margin-bottom: 70px;
+                width: 75%;
+                flex-wrap: nowrap;
+                flex-direction: column;
+            margin-top: 37px;
+                
+            }
+            .container label
+            {
+                    color: #009999;
+                    font-weight:bold;
+            }
+            .container p
+            {
+            color : black;
+            }
+            .form-control
+            {
+                    color: black;
+            }
+
+            .quant {
+               font-color: black;
+            }
+        </style>
+
+
+<script src="~/js/plugins.js"></script>
+<script>
+    $(window).on("load", function () {
+        $('body').addClass('loaded');
+    });
+</script>
+</body>
+</html>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

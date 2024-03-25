@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FixIt.Models.Payment>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix today</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link href="~/css/templatemo-style.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a363edd0e0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fad', 'arrow-up']" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+
+
+</head>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+         <th>
+             
+         </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                    <a href="@Url.Action("ItemsForOrder","OrderItems" , new{ orderid = item.Oid})">
+                     Order Items
+                     </a>
+
+            </td>
+         
+          
+        </tr>
+}
+    </tbody>
+</table>
+<<style>
+    a.{
+        color:#009999;
+    }
+</style>

@@ -1,0 +1,182 @@
+﻿@model FixIt.Models.Users
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix today</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link href="~/css/templatemo-style.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a363edd0e0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fad', 'arrow-up']" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+
+
+</head>
+<body>
+  
+   
+<div>
+
+
+    
+            <div class=page>
+            <aside>
+                <h1>My Profile</h1>
+                <nav>
+                    <ul>
+                        <li><a onclick="onLogout" href="@Url.Action("Edit","UsersDetails")">Edit My Information</a></li>
+                    </ul>
+                    <ul>
+                 <li><a onclick="onLogout" href="@Url.Action("Logout","user")">Logout</a></li>
+                    </ul>
+                    <ul>
+
+                        <li><a onclick="onLogout" href="@Url.Action("UserOrders","Payments")">My Orders</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main>
+                <div class="img">
+                    @if (Model.Photo != null)
+                    {
+                     
+                        var base64 = Convert.ToBase64String(Model.Photo);
+                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+                     <img src="@imgsrc" style="max-width: 100px; max-height: 100px" />    
+
+                    }
+                    else
+                    {
+                        <img src="https://i0.wp.com/upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"  alt="Photo" style="max-width: 100px; max-height: 100px  ">
+                    }
+
+                </div>
+                <div class="client_data">
+                    <div class="data">      @Html.DisplayFor(model => model.FName)  @Html.DisplayFor(model => model.LName) </div>        
+                    <div class="data"> Email        :  @Html.DisplayFor(model => model.EMail)</div>
+                    <div class="data"> Phone        :  @Html.DisplayFor(model => model.Phone) </div>
+                    <div class="data"> Address      :  @Html.DisplayFor(model => model.Address) </div>
+
+
+                </div>
+            </main>
+
+            
+            <style>
+     /* General styles */
+            body {
+             font-family: Arial, sans-serif;
+             margin: 0;
+             padding: 0;
+            }
+
+            .page {
+             display: flex;
+            }
+
+         /* Sidebar styles */
+            aside {
+/*              background-color: #385341;
+ */         color: #fff;
+            width: 250px;
+            min-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            transition: width 0.3s;
+            margin-right: -1233px;
+            margin-left: 510px;
+            box-shadow: 0px 0px 15px 0px #020101;
+            }
+
+            aside.collapsed {
+                 width: 80px;
+            }
+
+            aside h1 {
+                 background-color: transparent;
+                 border: none;
+                 color: #020101;
+                 cursor: pointer;
+                 font-size: 30px;
+                 outline: none;
+                 padding: 5px;
+                 margin: 7px;
+            }
+
+                  
+            aside nav ul {
+                 list-style: none;
+                 margin: 0;
+                 padding: 0;
+            }
+
+                 aside nav ul li {
+                     margin-bottom: 10px;
+            }
+
+            aside nav ul li a {
+                                color: #0099A0;
+                                text-decoration: none;
+                                transition: color 0.3s;
+                                font-size: 18px;
+                                font-family: cursive;
+            }
+
+            aside nav ul li a:hover {
+                             color: #bbb;
+            }
+
+         /* Main content styles */
+         main {
+             flex: 1;
+/*              box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+ */            
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+         }
+
+         .img img {
+             width: 150px;
+             height: 150px;
+               display: flex;
+                            margin: 20px;
+                            flex: 1;
+         }
+
+         .client_data {
+             margin: 20px;
+         
+         }
+
+         .data {
+             margin: 15px;
+             font-family: sans-serif;
+             font-weight: bold;
+         }
+
+ </style>
+            </div>
+        
+        </body>
+
+    </html>
+
+<script>function onLogout() 
+{
+    history.pushState({}, "", "/Login");
+}
+
+</script>

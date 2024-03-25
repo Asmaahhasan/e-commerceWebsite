@@ -1,0 +1,99 @@
+﻿@model IEnumerable<FixIt.OrderItem>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix today</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link href="~/css/templatemo-style.css" rel="stylesheet" />
+
+
+
+    <script src="https://kit.fontawesome.com/a363edd0e0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fad', 'arrow-up']" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+
+
+</head>
+<aside>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Phone
+            </th>
+            <th>
+                Spare Part
+            </th>
+            <th>Price</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                Total Price
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SIdNavigation.CIdNavigation.CName)
+                </td>
+                <td>
+                    <div class="content">
+                        @{
+                            var base64 = Convert.ToBase64String(item.SIdNavigation.Photo);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" sizes="5px" class="image" style="text-align: center;" />
+
+                        @Html.DisplayFor(modelItem => item.SIdNavigation.SName)
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SIdNavigation.Price)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+</aside>
+<style>
+    aside {
+        /*              background-color: #385341;
+     */ color: #fff;
+        width: 900px;
+        min-height: 106%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        transition: width 0.3s;
+        margin-left: 13pc;
+        box-shadow: 0px 0px 15px 0px #020101;
+    }
+    .pn {
+        flex-direction: row
+    }
+</style>

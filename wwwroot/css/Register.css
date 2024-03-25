@@ -1,0 +1,120 @@
+﻿body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Jost', sans-serif;
+}
+.main {
+	width: 350px;
+	height: 666px;
+	overflow: hidden;
+	background: url(https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/0352236�/0352236�/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=0352236�&hash=tfhgbs86ka6divo3llbvp93mg4csvb38) no-repeat center/ cover;
+	border-radius: 10px;
+	box-shadow: -1px 8px 16px #000;
+	margin: 0 auto;
+	border: 5px solid #009999;
+}
+#chk{
+	display: none;
+}
+.signup {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-top: 5px;
+	margin-bottom: 1px;
+	
+	
+}
+
+
+label {
+	color: #000000;
+	font-size: 2.3em;
+	justify-content: center;
+	display: flex;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+	margin-left = 250px ;
+}
+
+.log-in {
+	margin: 1px;
+}
+.sign-up {
+	
+	margin: 20px;
+	
+}
+input {
+	width: 61%;
+	height: 17px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: 2px solid #009999;
+	outline: none;
+	border-radius: 5px;
+}
+button {
+	color: black;
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	border: #009999 solid 3px;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border-radius: 15px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+	button:hover {
+		background: #008080;
+	}
+.login {
+	height: 00px;
+	background: #eee;
+	border-radius: 70% / 10%;
+	transform: translateY(-100px);
+	transition: .8s ease-in-out;
+
+	margin-top: 200px;
+}
+	.login label {
+		color: #000000;
+		transform: scale(.6);
+	}
+
+#chk:checked ~ .login {
+	transform: translateY(-600px);
+}
+#chk:checked ~ .login label{
+	transform: scale(1);	
+}
+#chk:checked ~ .signup label{
+	transform: scale(.6);
+}
+i{
+	width:5px;
+	height:10px;
+}
+#icon {
+	width: 12%;
+	height: 41px;
+	background: #e0dede;
+	margin-right: 180px;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+}

@@ -1,0 +1,123 @@
+﻿@model IEnumerable<FixIt.Models.Catagory>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog-Z Contact page</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="~/css/templatemo-style.css">
+    <script src="https://kit.fontawesome.com/a363edd0e0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fad', 'arrow-up']" />
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fas', 'arrow-up']" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+   
+    @{
+        var data = ViewBag.Message;
+    }
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll">
+        <form class="d-flex tm-search-form" asp-action="CategoriesByBrand" asp-controller="Catagories" asp-route-brandId=@data.BId>
+            <input name ="Search" class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success tm-search-btn" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+     <div>
+        <a asp-action="CategoriesByBrand" asp-controller="Catagories" asp-route-brandId=@data.BId>Back For The Whole List</a>
+    </div>
+<table class="table">
+
+    <tbody>
+     <div class="container">
+        <div class="row">
+        @foreach (var item in Model)
+        {
+                     <div class="col-sm-3">
+            
+                   
+                        <a href="@Url.Action("Sparepartsbycatagory","SpareParts" , new{ catId = item.CId})" >
+                        @{
+                            var base64 = Convert.ToBase64String(item.Photo);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+                        }
+                            
+                         <div class="border">
+                            <div class="content">
+                                              <img src="@imgsrc" class="image" style="text-align: center;"  />
+                               <div class="caption" >
+                                    <h4>@Html.DisplayFor(modelItem => item.CName)</h4>
+                   
+                                    </div>
+
+                               </div>     
+                                    <style>
+        .border {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        }
+
+        .image {
+            height: 150px;
+            object-fit: contain;
+            border-radius: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        }
+
+        .caption h4,
+        .caption h6 {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+                               </style>
+                             </div>
+                           
+                    </a>
+                    </div>
+        }
+        </div>
+      </div>
+    </tbody>
+</table>
+
+<script src="~/js/plugins.js"></script>
+<script>
+    $(window).on("load", function () {
+        $('body').addClass('loaded');
+    });
+</script>
+</body>
+</html>
+

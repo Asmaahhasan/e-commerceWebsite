@@ -1,0 +1,48 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin: 50px 120px;
+}
+
+.inner {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    margin: 0px 20px;
+    border-radius: 15px;
+    border: none;
+}
+
+    .inner h4 {
+        text-align: center;
+    }
+
+    .inner img {
+        padding: 10px;
+    }
+
+        .inner img:hover {
+            cursor: pointer;
+            padding-top: 5px;
+            transition-duration: .5s;
+        }
+
+.container1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    margin: 20px auto;
+}
+
+h1 {
+    font-family: poppins;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+}

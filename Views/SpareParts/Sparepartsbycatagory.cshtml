@@ -1,0 +1,158 @@
+﻿@model IEnumerable<FixIt.Models.SparePart>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog-Z Contact page</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="~/css/templatemo-style.css">
+    <script src="https://kit.fontawesome.com/a363edd0e0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fad', 'arrow-up']" />
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fas', 'arrow-up']" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--
+
+    TemplateMo 556 Catalog-Z
+
+    https://templatemo.com/tm-556-catalog-z
+
+    -->
+</head>
+<body>
+   
+    @{
+        var data = ViewBag.ss;
+    }
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll">
+        <form class="d-flex tm-search-form" asp-action="Sparepartsbycatagory" asp-controller="SpareParts"asp-route-catId=@data.CId>
+            <input name ="Search" class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success tm-search-btn" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <div>
+        <a asp-action="Sparepartsbycatagory" asp-controller="SpareParts"asp-route-catId=@data.CId>Back For The Whole List</a>
+    </div>
+
+<table class="table">
+    
+    <tbody>
+         <div class="container">
+        <div class="row">
+        @foreach (var item in Model)
+        {
+          <div class="col-sm-3">
+              <div class="border">
+                 <div class="content">
+                      @{
+                          var base64 = Convert.ToBase64String(item.Photo);
+                          var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+                       }
+                       <img src="@imgsrc" class="image" style="text-align: center;" />
+                        <div class="caption" >
+                                <h4>@Html.DisplayFor(modelItem => item.SName)</h4>
+                                <h4>@Html.DisplayFor(modelItem => item.Price)$ </h4> 
+                                <h5>Available Quantity @Html.DisplayFor(modelItem =>item.Quantity)  </h5>
+                                   
+
+
+                                            <a href="@Url.Action("Create","CartItems" , new{ partId = item.SId})">
+@*                                                 <button class="sc-411a4f75-6 eAxSkZ"><img src="https://f.nooncdn.com/s/app/com/noon/icons/quick-atc-add-to-cart-grey.svg" alt="add-to-cart" width="24px" height="24px" class="sc-19edbe5f-1 iqMsQv"></button>
+ *@                                                <img src="https://f.nooncdn.com/s/app/com/noon/icons/quick-atc-add-to-cart-grey.svg"
+
+                                                alt="add-to-cart" width="30px" height="30px" class="sc-19edbe5f-1 iqMsQv">
+                                            </a>
+                             
+                                    </div>
+
+                 </div>     
+    <style>
+      
+        .caption button{
+          background-color: transparent;
+          cursor: pointer;
+            border-radius: 15px;
+          
+          }
+
+        .border {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ccc;
+       border-radius: 15px;
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        margin-bottom: 20px;
+        }
+
+    .content {
+        text-align: center;
+            display: flex;
+           /*  justify-content: center;
+            align-items:center;  */
+          flex-direction: column
+            }
+
+    .image {
+        height: 150px;
+        width: 100%;
+        object-fit: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+           }
+
+   .caption h4 ,.caption h6{
+           margin-right: 10px;
+   text-align: left;
+         margin-top: 10px;
+        margin-bottom: 0;
+                           }
+
+    .caption h5 {
+         color:gray;
+         font-size : 10px;
+         
+    }
+
+                                       
+    .caption {          
+        flex-direction: row      
+    }
+                 </style>
+                         </div>
+                          
+                          
+                                </div>
+        }
+          </div>
+      </div>
+    </tbody>
+</table>
+
+<script src="~/js/plugins.js"></script>
+<script>
+    $(window).on("load", function () {
+        $('body').addClass('loaded');
+    });
+</script>
+</body>
+</html>

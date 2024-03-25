@@ -1,0 +1,491 @@
+﻿ @model IEnumerable<FixIt.Models.Cart>
+
+@{
+    ViewData["Title"] = "UserCart";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="CodeHim">
+     <link rel="stylesheet" href="~/css/bootstrap.min.css">
+   <link rel="stylesheet" href="~/fontawesome/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a363edd0e0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fad', 'arrow-up']" />
+    <font-awesome-icon :icon="['far', 'arrow-up']" />
+    <FontAwesomeIcon icon="fa-duotone fa-arrow-up" />
+    <font-awesome-icon :icon="['fas', 'arrow-up']" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+	<link href="~\css\cart.css" rel="stylesheet" />
+  <link rel="stylesheet" href="~/css/demo.css">
+
+</head>
+<body>
+
+    <main>
+       <div class="shopping-cart-wrapper">
+         <table class="table is-fullwidth ">
+    <thead>
+                 
+                     
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Spare Part
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SIdNavigation.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                Subtotal
+            </th>
+           
+            <th>  </th>
+            <th></th>
+        </tr> 
+          </thead>
+
+    <tbody>
+@foreach (var item in Model) {
+    <tr class="cart-item">
+                          
+           <td>
+                @Html.DisplayFor(modelItem => item.SIdNavigation.CIdNavigation.CName)
+           </td>
+           <td>                
+               <div class="content">
+                 @{
+                   var base64 = Convert.ToBase64String(item.SIdNavigation.Photo);
+                   var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                  }
+                    <img src="@imgsrc" sizes="5px" class="image" style="text-align: center;" />
+
+                    @Html.DisplayFor(modelItem => item.SIdNavigation.SName)
+               </div>
+           </td>
+           <td>
+                    $@Html.DisplayFor(modelItem => item.SIdNavigation.Price)
+           </td>
+
+            <td>
+                <input class="input is-primary cart-item-qty" style="width:100px" type="number"
+                min="1" value="@Html.DisplayFor(modelItem => item.Quantity)"
+                max="@Html.DisplayFor(modelItem => item.SIdNavigation.Quantity)" 
+                data-price=" @Html.DisplayFor(modelItem => item.SIdNavigation.Price)" >
+                 
+                         @* 
+                                @using (Html.BeginForm("UpdateCartItemQuantity", "CartItems"))
+                                {
+                                    @Html.HiddenFor(modelItem => item.CartId)
+                                   
+                                    // Include other hidden fields if needed
+                                    <input class="input is-primary cart-item-qty" style="width:100px" type="number"
+                                           min="1" value="@Html.DisplayFor(modelItem => item.Quantity)"
+                                           max="@Html.DisplayFor(modelItem => item.SIdNavigation.Quantity)"
+                                           data-price="@Html.DisplayFor(modelItem => item.SIdNavigation.Price)"
+                                           name="newQuantity" data-cart-id="@item.CartId" />
+                                    <button type="submit" itemid="@item.CartId]" >Update</button>
+                                } *@
+
+            </td>
+
+            <td class="cart-item-total">
+                    <p>$@(item.SIdNavigation.Price * item.Quantity)</p>
+            </td>
+           
+            <td>
+             @*  <a asp-action="Edit" asp-route-id="@item.CartId">Edit</a> |
+             *@  
+            <a asp-action="Delete" asp-route-id="@item.CartId">Remove</a>
+            </td>
+        </tr>
+}
+</tbody>  
+         </table>
+         <div calss="ro">
+     <div class="totals">
+    <div class="totals-item">
+      <label>Total Price</label>
+                        <div class="totals-value" id="cart-subtotal">$￥0</div>
+    </div>
+                </div>
+             
+            </div>
+                <form asp-controller="CartItems" asp-action="Checkout">
+
+                <button type="submit" class="bet">Checkout</button>
+            </form>
+           
+            </div>
+        </div>
+    </main>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="~/js/script.js"></script>
+    <style>
+        .ro{
+            flex-direction: column
+        }
+        .bet {
+         
+            background-color: #009999;
+            border: 0;
+            border-radius: 25px;
+            padding: 12px 50px 14px;
+            font-size: 1.2rem;
+            color: #FFF;
+            margin-top: 200px;
+
+        }
+        
+        .label {
+            font-weight: bold;
+        }
+        .nav-item {
+            margin-right: 30px;
+        }
+
+            .nav-item:last-child {
+                margin-right: 0;
+            }
+
+        .nav-link {
+            color: snow;
+            border-bottom: 4px solid transparent;
+            font-size: 1.2rem;
+        }
+
+        .nav-link-1.active,
+        .nav-link-1:hover {
+            border-color: #33CCFF;
+        }
+
+        .nav-link-2.active,
+        .nav-link-2:hover {
+            border-color: #FF6666;
+        }
+
+        .nav-link-3.active,
+        .nav-link-3:hover {
+            border-color: #33CC66;
+        }
+
+        .nav-link-4.active,
+        .nav-link-4:hover {
+            border-color: #CC66CC;
+        }
+
+        .nav-link-5.active,
+        .nav-link-5:hover {
+            border-color: #33CCFF;
+        }
+
+        .nav-link-6.active,
+        .nav-link-6:hover {
+            border-color: #33CCFF;
+        }
+
+        .head {
+            background-color: rgb(0, 153, 153);
+            border-radius: 3px;
+            height: 40px;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+            .head p {
+                color: white;
+                font-weight: bold;
+                font-size: 25px;
+            }
+
+        .foot {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 10px;
+            border-top: 1px solid black;
+        }
+
+
+        .header1 .fas {
+            width: 100px;
+            height: 70px;
+        }
+
+        header .icon-cart {
+            position: relative;
+        }
+
+            header .icon-cart span {
+                display: flex;
+                width: 20px;
+                height: 20px;
+                background-color: rgb(0, 153, 153);
+                justify-content: center;
+                align-items: center;
+                color: white;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                right: -15px;
+            }
+
+        .listproduct img {
+            height: 150px;
+            margin: 5px 0;
+            object-fit: contain;
+            /*width:40%;*/
+            filter: drop-shadow(0 50px 20px #00009);
+        }
+
+        .listproduct {
+         
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+
+            .listproduct .item {
+                border: 1px solid black;
+             
+                padding: 20px;
+                border-radius: 20px;
+              
+            }
+                .listproduct .item h2 {
+                    font-weight: 500;
+                    font-size: large;
+                }
+               
+                .listproduct .item .price {
+                    letter-spacing: 5px;
+                    font-size: small;
+                }
+
+        .navbar-brand {
+            color: snow;
+            font-size: 1.6rem;
+        }
+
+        .navbar-brand {
+            padding-top: 0.3125rem;
+            padding-bottom: 0.3125rem;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+            text-decoration: none;
+            white-space: nowrap;
+            color: snow;
+            font-family: ui-monospace;
+        }
+
+        .tm-container-small {
+            max-width: 1050px;
+        }
+
+        .container-fluid {
+            max-width: 1770px;
+        }
+
+        .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+            --bs-gutter-x: 1.5rem;
+            width: 100%;
+            padding-right: calc(var(--bs-gutter-x)/ 2);
+            padding-left: calc(var(--bs-gutter-x)/ 2);
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+            width: 100%;
+            padding-right: var(--bs-gutter-x, .75rem);
+            padding-left: var(--bs-gutter-x, .75rem);
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+       
+        div {
+            display: block;
+        }
+
+        .tm-footer {
+            font-size: 0.95rem;
+            margin-top: 152px;
+        }
+
+     
+
+        label {
+            display: inline-block;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        element.style {
+        }
+
+        .tm-footer-title {
+            font-size: 1.4rem;
+        }
+
+        .tm-text-primary {
+            color: #009999;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        h3 {
+            font-size: 3rem;
+            font-family: Poppins;
+            font-weight: bold;
+        }
+
+        .h3, h3 {
+            font-size: calc(1.3rem + .6vw);
+        }
+
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .h3, h3 {
+            font-size: calc(1.3rem + .6vw);
+        }
+
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        h3 {
+            display: block;
+            font-size: 1.17em;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+
+        p, .tm-text-gray {
+            color: #999;
+        }
+
+        footer .tm-social-links li a {
+            border-radius: 50%;
+        }
+
+        .tm-social-links li a {
+            color: #999999;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            background-color: #fff;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tm-footer-links li a {
+            color: #999999;
+        }
+
+     
+
+       
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        .tm-social-links li {
+            list-style: none;
+            margin-right: 15px;
+        }
+
+        li {
+            text-align: -webkit-match-parent;
+        }
+
+        .fa-brands, .fab {
+            font-weight: 400;
+        }
+
+        <style >
+        .fa-brands, .fab {
+            font-family: "Font Awesome 6 Brands";
+        }
+
+        <style >
+        .fa, .fa-brands, .fa-classic, .fa-regular, .fa-sharp, .fa-solid, .fab, .far, .fas {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            display: var(--fa-display, inline-block);
+            font-style: normal;
+            font-variant: normal;
+            line-height: 1;
+            text-rendering: auto;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        i {
+            font-style: italic;
+        }
+
+        .tm-social-links li a {
+            color: #999999;
+            width: 44px;
+            height: 44px px;
+            display: flex;
+            background-color: #fff;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</body>
+</html>
